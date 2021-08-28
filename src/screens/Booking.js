@@ -9,19 +9,43 @@ import {
 import { Icon } from '@material-ui/core';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 
+function priceDisplay(selectedDate, startTime, endTime, rate){
+
+    if(Date.parse(endTime) > Date.parse(startTime)){
+      //var diff = Math.abs(endTime.getHours() - startTime.getHours());
+      var end = endTime.getHours()*60 + endTime.getMinutes();
+      var temp = new Date(startTime)
+      var start = temp.getHours()*60+temp.getMinutes();
+      var price = ((end-start)*rate/60).toFixed(2)
+      var total = (price*1.05).toFixed(2)
+      return(<div>
+                <p>Price for {end-start} minutes is Rs. {price}</p>
+                <p>GST 5% : Rs. {(price*0.05).toFixed(2)}</p>
+                <p>Total price: Rs. {total}</p>
+             </div>);
+    } else {
+        return(<p style={{color:'red'}}>Start time can't be more or equal to End time</p>)
+    }
+}
 function Booking(){
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2021-08-27T21:11:54'));
-  const [startTime, setStartTime] = React.useState(new Date('2021-08-27T21:11:54'));
-  const [endTime, setEndTime] = React.useState(new Date('2021-08-27T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(Date().toLocaleString());
+  const [startTime, setStartTime] = React.useState(Date().toLocaleString());
+  const [endTime, setEndTime] = React.useState(Date().toLocaleString());
+  const [price, setPrice] = React.useState("Rs.300");
+  const [rate, setRate] = React.useState(50)
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    
   };
   const handleStartTime = (date) => {
     setStartTime(date);
+    
   };
   const handleEndTime = (date) => {
-    setStartTime(date);
+    setEndTime(date);
+    
   };
+  
 
     return (
       <div>
@@ -68,6 +92,8 @@ function Booking(){
             />
           </Grid>
         </MuiPickersUtilsProvider>
+        <p>Rate: {rate} per hour</p>
+        {priceDisplay(selectedDate, startTime, endTime, rate)}
       </div>
     );
   
