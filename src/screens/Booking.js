@@ -48,7 +48,7 @@ function Booking(){
   
 
     return (
-      <div>
+      <div style={{display:'table', margin:'0 auto'}}>
         <div style={{display: 'flex', flexDirection: 'row'}}>
           <EmojiTransportationIcon fontSize="large"/>
           <h2>Diptendu's Parking</h2>
@@ -60,6 +60,7 @@ function Booking(){
           <Grid container justifyContent="space-around">
             
             <KeyboardDatePicker
+              style={{padding: '10px'}} 
               margin="normal"
               id="date-picker-dialog"
               label="Pick date for parking"
@@ -68,9 +69,11 @@ function Booking(){
               onChange={handleDateChange}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
+
               }}
             />
             <KeyboardTimePicker
+              style={{padding: '10px'}} 
               margin="normal"
               id="time-picker"
               label="Pick a start time"
@@ -81,6 +84,7 @@ function Booking(){
               }}
             />
             <KeyboardTimePicker
+              style={{padding: '10px'}} 
               margin="normal"
               id="time-picker"
               label="Pick a end time"
