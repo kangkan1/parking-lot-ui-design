@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Parking Lot UI design in React Js
+## Project title : Designing a responsive Parking Lot user-interface in React js
+This project is being done for the course of Information System Design for 3rd semester.
+This is expected to be submitted by the end of this semester, i.e. November 2021.
+Five members are contributing to the project. They are: Ashutosh, Diptendu, Fayyaz,
+Kangkan and Sourabh.
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
