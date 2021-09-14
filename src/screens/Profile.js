@@ -70,12 +70,12 @@ function Profile (){
                     let data = tableData.data.available[k];
                     return (
                       <tr key={i}>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{k}</td>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{data.a}</td>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{data.b}</td>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{data.c}</td>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{data.d}</td>
-                        <td style ={{backgroundColor:i%2==0?'white':'#ddd'}}>{data.e}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{k}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.a}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.b}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.c}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.d}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.e}</td>
                       </tr>
                     );
                   })}

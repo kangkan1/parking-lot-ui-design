@@ -6,6 +6,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
 import { Icon } from '@material-ui/core';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 
@@ -28,21 +29,44 @@ function priceDisplay(selectedDate, startTime, endTime, rate){
     }
 }
 function Booking(){
+
   const [selectedDate, setSelectedDate] = React.useState(Date().toLocaleString());
-  const [startTime, setStartTime] = React.useState(Date().toLocaleString());
-  const [endTime, setEndTime] = React.useState(Date().toLocaleString());
+  const [startTime, setStartTime] = React.useState(selectedDate.toLocaleString());
+  const [endTime, setEndTime] = React.useState(selectedDate.toLocaleString());
   const [price, setPrice] = React.useState("Rs.300");
   const [rate, setRate] = React.useState(50)
+  const [booking, setBooking] = React.useState([])
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    
+    setStartTime(date)
+    setEndTime(date)
   };
   const handleStartTime = (date) => {
+    
     setStartTime(date);
+    console.log("new start time: "+startTime)
     
   };
   const handleEndTime = (date) => {
     setEndTime(date);
+    console.log("new end time: "+endTime)
+    
+  };
+  const bookButton = () =>{
+    let book = []
+    book.push(selectedDate)
+    book.push(startTime)
+    book.push(endTime)
+    let temp = booking
+    temp.push(book)
+    setBooking(temp)
+    for (var i = 0; i < booking.length; i++) {
+      console.log(booking[i][0])
+      console.log(booking[i][1])
+      console.log(booking[i][2]); 
+    }
+     
     
   };
   
@@ -95,8 +119,19 @@ function Booking(){
               }}
             />
           </Grid>
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider> 
+        <Button variant="contained" color="primary"
+          onClick={()=>{
+                console.log("Booked clicked")
+                bookButton()
+           }}>
+          Book
+        </Button>
         <p>Rate: {rate} per hour</p>
+        <button
+          onClick={()=>{
+            console.log("Change value")
+          }}>Change props</button>
         {priceDisplay(selectedDate, startTime, endTime, rate)}
       </div>
     );

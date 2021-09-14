@@ -28,7 +28,7 @@ function HomeIcon(props) {
 }
 function toDisplay(val){
   if(val===0){
-    return(<Booking />);
+    return(<Booking/>);
   }  
   else if(val===1){
     return(<Profile />);
@@ -40,11 +40,18 @@ function toDisplay(val){
 function App() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [newBooking, setNewBooking] = useState([]);
+  const [name, setName] = useState("Passed from App.js")
+  const changeName = (val) =>{
+    setName(val)
+  }
+
   useEffect(() => {
    document.title = "Diptendu's Parking"
   }, []);
     return (
       <div>
+        <p>interaction between App.js and Booking.js: {name}</p>
         {toDisplay(value)}
         <BottomNavigation
           value={value}
