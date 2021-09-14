@@ -51,7 +51,7 @@ function App() {
   }, []);
     return (
       <div>
-        <p>interaction between App.js and Booking.js: {name}</p>
+        
         {toDisplay(value)}
         <BottomNavigation
           value={value}
