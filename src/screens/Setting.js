@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import PhotoUpload from '../components/PhotoUpload';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ function Setting () {
   const [editEnabled, setEditEnabled] = useState(false)
   const [fullName, setFullName] = useState("");
   const [editSave, setEditSave] = useState("Edit")
-  const [address, setAddress] = useState("")
+  const [address, setAddress] = useState("Your address...")
   const [emailId, setEmailId] = useState("")
 
   return (
@@ -37,6 +38,7 @@ function Setting () {
             }}>
             {editSave}
           </Button>
+          {editEnabled?<PhotoUpload {...editEnabled} />:null}
           <div>
             <TextField required id="standard-required" 
               label="Full Name" 
@@ -53,8 +55,7 @@ function Setting () {
               rows={4}
               value={address}
               disabled={!editEnabled}
-              onChange={(e)=>setAddress(e.target.value)}
-              defaultValue="Your Address" />
+              onChange={(e)=>setAddress(e.target.value)}/>
            </div>
            <div>
             <TextField
@@ -71,6 +72,7 @@ function Setting () {
            </div>   
         </div>
       </form>
+
     </div>
   );
 }
