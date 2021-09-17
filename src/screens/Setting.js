@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Setting () {
+
   const classes = useStyles();
   const [editEnabled, setEditEnabled] = useState(false)
   const [fullName, setFullName] = useState("");
@@ -22,7 +23,7 @@ function Setting () {
   const [emailId, setEmailId] = useState("")
 
   return (
-    <div style={{display:'table', margin:'0 auto'}}>
+    <div style={{display:'table', margin:'0 auto',  overflowY: 'auto'}}>
       <form className={classes.root} noValidate autoComplete="off">
         <div style={{padding:'15px'}}>
           <Button variant="contained" 
@@ -38,7 +39,7 @@ function Setting () {
             }}>
             {editSave}
           </Button>
-          {editEnabled?<PhotoUpload {...editEnabled} />:null}
+          <PhotoUpload editEnabled={editEnabled} />
           <div>
             <TextField required id="standard-required" 
               label="Full Name" 

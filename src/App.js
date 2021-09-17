@@ -50,7 +50,7 @@ function App() {
    document.title = "Diptendu's Parking"
   }, []);
     return (
-      <div>
+      <div style={{overflowY: 'auto'}}>
         
         {toDisplay(value)}
         <BottomNavigation
