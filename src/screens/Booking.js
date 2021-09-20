@@ -9,6 +9,9 @@ import {
 import Button from '@material-ui/core/Button';
 import { Icon } from '@material-ui/core';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 
 function priceDisplay(selectedDate, startTime, endTime, rate){
 
@@ -34,8 +37,9 @@ function Booking(){
   const [startTime, setStartTime] = React.useState(selectedDate.toLocaleString());
   const [endTime, setEndTime] = React.useState(selectedDate.toLocaleString());
   const [price, setPrice] = React.useState("Rs.300");
-  const [rate, setRate] = React.useState(50)
-  const [booking, setBooking] = React.useState([])
+  const [rate, setRate] = React.useState(50);
+  const [booking, setBooking] = React.useState([]);
+  const [bookClicked, setBookClicked] = React.useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -66,6 +70,11 @@ function Booking(){
       console.log(booking[i][1])
       console.log(booking[i][2]); 
     }
+     console.log(JSON.stringify(booking))
+     setBookClicked(true);
+     setTimeout(() => {
+        setBookClicked(false)
+     }, 1000);
      
     
   };
@@ -124,14 +133,15 @@ function Booking(){
           onClick={()=>{
                 console.log("Booked clicked")
                 bookButton()
+
            }}>
           Book
         </Button>
+        {bookClicked?
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="success">Booked succesfully</Alert>
+          </Stack>:null}
         <p>Rate: {rate} per hour</p>
-        <button
-          onClick={()=>{
-            console.log("Change value")
-          }}>Change props</button>
         {priceDisplay(selectedDate, startTime, endTime, rate)}
       </div>
     );
