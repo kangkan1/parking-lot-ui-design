@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -13,6 +15,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import Booking from './screens/Booking.js'
 import Profile from './screens/Profile.js'
 import Setting from './screens/Setting.js'
+
+import ProfilePage from './pages/ProfilePage.js'
 
 const useStyles = makeStyles({
   root: {
@@ -26,9 +30,25 @@ function HomeIcon(props) {
     </SvgIcon>
   );
 }
-function toDisplay(val){
+
+function App() {
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+  const [newBooking, setNewBooking] = useState([]);
+  const [name, setName] = useState("Passed from App.js");
+  const [userBooking, setUserBooking] = useState([]);
+
+  const changeName = (val) =>{
+    setName(val)
+  };
+
+  const updateUserBooking = ({val})=>{
+ 
+    setUserBooking(val)
+  };
+  const toDisplay =(val) =>{
   if(val===0){
-    return(<Booking/>);
+    return(<Booking />);
   }  
   else if(val===1){
     return(<Profile />);
@@ -37,22 +57,16 @@ function toDisplay(val){
     return(<Setting />);
   
 }
-function App() {
-  const classes = useStyles();
-  const [value, setValue] = useState(0);
-  const [newBooking, setNewBooking] = useState([]);
-  const [name, setName] = useState("Passed from App.js")
-  const changeName = (val) =>{
-    setName(val)
-  }
+
 
   useEffect(() => {
    document.title = "Diptendu's Parking"
   }, []);
     return (
-      <div style={{overflowY: 'auto'}}>
+      <div>
         
         {toDisplay(value)}
+
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {

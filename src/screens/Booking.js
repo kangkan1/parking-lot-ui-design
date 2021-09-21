@@ -31,7 +31,7 @@ function priceDisplay(selectedDate, startTime, endTime, rate){
         return(<p style={{color:'red'}}>Start time can't be more or equal to End time</p>)
     }
 }
-function Booking(){
+function Booking({updateUserBooking}){
 
   const [selectedDate, setSelectedDate] = React.useState(Date().toLocaleString());
   const [startTime, setStartTime] = React.useState(selectedDate.toLocaleString());
@@ -65,6 +65,8 @@ function Booking(){
     let temp = booking
     temp.push(book)
     setBooking(temp)
+    //updateUserBooking(booking);
+
     for (var i = 0; i < booking.length; i++) {
       console.log(booking[i][0])
       console.log(booking[i][1])
@@ -131,8 +133,12 @@ function Booking(){
         </MuiPickersUtilsProvider> 
         <Button variant="contained" color="primary"
           onClick={()=>{
-                console.log("Booked clicked")
-                bookButton()
+                console.log("Booked clicked");
+                bookButton();
+                if(bookClicked){
+                  //updateUserBooking(booking);
+                }
+                
 
            }}>
           Book
