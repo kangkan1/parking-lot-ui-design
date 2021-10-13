@@ -12,6 +12,17 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import PersonIcon from '@material-ui/icons/Person';
 
 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+
+
+import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
+//import MenuIcon from '@mui/icons-material/Menu';
+
+
 import Booking from './screens/Booking.js'
 import Profile from './screens/Profile.js'
 import Setting from './screens/Setting.js'
@@ -64,27 +75,43 @@ function App() {
   }, []);
     return (
       <div>
-        
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                
+              </IconButton>
+              <EmojiTransportationIcon fontSize="large"/>
+              <Typography 
+                variant="h6" color="inherit" component="div"
+                style={{padding:10}}
+                onClick={()=>{
+                  setValue(0);
+                }}>
+                Home
+              </Typography>
+              <Typography 
+                style={{padding:10}}
+                variant="h6" color="inherit" component="div"
+                onClick={()=>{
+                  setValue(1);
+                }}>
+                Booking
+              </Typography>
+              <Typography 
+                style={{padding:10}}
+                variant="h6" color="inherit" component="div"
+                onClick={()=>{
+                  setValue(2);
+                }}>
+                Setting
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </Box>
         {toDisplay(value)}
 
-        <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-            console.log(newValue);
-          }}
-          showLabels
-          className={classes.root}
-          style = {{justifyContent: 'center',
-                    alignItems: 'center',
-                    position: 'absolute', 
-                    align:'center',
-                    bottom: 0}}
-        >
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
-        </BottomNavigation>
+        
       </div>
     );
   

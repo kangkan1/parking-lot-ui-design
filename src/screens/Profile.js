@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 function Profile (){
   const json = {
                 data: {
@@ -49,7 +51,7 @@ function Profile (){
                 }
               };
 
-  const header = ["Date", "Start Time", "End time", "Price", "GST", "Total Price"];
+  const header = ["Date", "Start Time", "End time", "Price", "GST", "Total Price", ""];
   const [tableData, setTableData] = useState(json);
   const renderTable = () =>{
     return(
@@ -58,7 +60,7 @@ function Profile (){
               <table style={{border:'1px solid #eee', boxShadow:'0 4px 5px #ccc'}}>
                 <thead>
                   <tr>{header.map((h, i) => 
-                    <th style={{backgroundColor: '#04AA6D', padding:'1em',
+                    <th style={{backgroundColor: '#04AA6D', padding:'2em',
                                 textAlign: 'left', color:'white'}}
                       key={i}>
                       {h}
@@ -76,6 +78,13 @@ function Profile (){
                         <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.c}</td>
                         <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.d}</td>
                         <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>{data.e}</td>
+                        <td style ={{backgroundColor:i%2===0?'white':'#ddd'}}>
+                        <Button startIcon={<DeleteIcon />}
+                          onClick={()=>{
+                            alert("Deleted")
+                            let temp = {...tableData.data.available}
+                          }}>Delete</Button>
+                        </td>
                       </tr>
                     );
                   })}
